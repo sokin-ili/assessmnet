@@ -1,0 +1,27 @@
+>>Part III - visualization
+
+-Cover slide
+The existing layout is generaly good but it has a lot of information that distract the user from the business insights and could be reshaped in a more educational way
+1. On the top, the filters are very usefull!
+2. In the orders plot, the right axes(acquisitions) should be rescaled. The maximum value 80 should be changed, as in the specific plot it takes values from [2,9] 
+3. In the orders plot, some numbers overlap(for example on Jan22, 2022). The numbers should have white color and not blue, because the user can not see the values easily
+4. In the DH Average Basket Size plot, there should be no number in the plot area. The user could check the axes for values. In addition, the black background does not work well with the line plots color
+5. Both plots should should have titles on their secondary axes
+The user can extract some useful business insights:
+For week JAN1-JAN7:
+1. We had 5632 orders with an average basket size=14.64 euros
+2. From these orders, 1.33% failed,60.6% were payed online(no cash)
+3. Jokers appear to increase by 25 and their shate increase by 0.18% 
+
+-Geographic breakdown
+A better aesthetic for a geographic breakdown, should be an interactive geo-plot and not just a raw table,like the one here. 
+However, even with this raw table, one can deduce interesting insights:
+1.This dashboard refers to week JAN1-JAN7
+2.The granularity of this dashboard is city, meaning that every index is analysed per city
+3.The table shows the city with most orders in descending order
+4.The delta% (percentage rate of change with previous value). For example, Athens appears to have an increase of 3.1% in orders with respect to the previous week orders 
+5.Acquisitions
+6.The delta(absolute difference with previous value). For example, Athens appears to have a decrease of 2 acquisitionswith respect to the previous week acquisitions
+7.The DH Average Basket, which indicates the average basket per city
+8.The delta for DH Average Basket. For example, we derive that Athens appears to have a decrease in her average basket size when compared with previous week
+9.Extra additions(perhaps) could be a cuisine filter and the total amount or some KPIs from Query I

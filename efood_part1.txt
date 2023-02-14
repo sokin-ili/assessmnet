@@ -1,0 +1,41 @@
+>> query 1
+select brk_tbl.city,
+  brk_tbl.breakfast_orders, 
+  brk_tbl.breakfast_basket, 
+  non_brk_tbl.efood_basket, 
+  brk_tbl.breakfast_frequency,
+  non_brk_tbl.efood_frequency,
+  brk_tbl.breakfast_users3freq_perc,
+  non_brk_tbl.efood_users3freq_perc
+from (
+    select city, 
+      count(order_id) as breakfast_orders, 
+      sum(amount)/ count(order_id) as breakfast_basket, 
+      count(order_id)/count(distinct(user_id)) as breakfast_frequency,
+      case when count(order_id)/count(distinct(user_id)) > 3 then 100*(count(order_id)/count(distinct(user_id)))/count(distinct(user_id)) else null end    as    breakfast_users3freq_perc
+  from `efood2022-377617.main_assignment.orders`
+  group by city, cuisine
+  having count(order_id)>1000 and cuisine='Breakfast'
+  order by breakfast_orders desc
+) as brk_tbl
+inner join (
+  select city, 
+    count(order_id) as non_breakfats_orders, 
+    sum(amount)/ count(order_id) as efood_basket,
+    count(order_id)/count(distinct(user_id)) as efood_frequency,
+    case when count(order_id)/count(distinct(user_id)) > 3 then (count(order_id)/count(distinct(user_id)))/count(distinct(user_id)) else null end as     efood_users3freq_perc
+  from `efood2022-377617.main_assignment.orders`
+  group by city
+  having count(order_id)>1000) as non_brk_tbl
+on brk_tbl.city=non_brk_tbl.city
+order by brk_tbl.breakfast_orders desc 
+limit 5
+
+
+
+
+
+
+
+
+
